@@ -53,7 +53,7 @@ hitButton.addEventListener("click", function() {
 
 	while (dealerScore < playerScore
 			&& playerScore <= 21
-			&& dealerScore <= 21) {
+			&& dealerScore < 21) {
 	dealerCards.push(getNextCard());
 	updateScores();
 }
@@ -193,6 +193,8 @@ function checkForEndOfGame() {
 	else if (gameOver) {
 		if (playerScore === dealerScore) {
 			tieGame = true;
+			playerWon = false;
+			dealerWon = false;
 		}
 		else if (playerScore > dealerScore) {
 			playerWon = true;
@@ -237,7 +239,7 @@ function showStatus() {
 		else if (tieGame) {
 			textArea.innerText += "TIE!"
 		}
-		else {
+		else if (dealerWon) {
 			textArea.innerText += "DEALER WINS";
 		}
 		newGameButton.style.display = "inline";
