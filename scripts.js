@@ -5,14 +5,32 @@
 
 // Card Variables
 let suits = ["Hearts", "Clubs", "Diamonds", "Spades"]
-let values = ["Ace", "King", "Queen", "Jack", "Ten", "Nine",
-	"Eight", "Seven", "Six", "Five", "Four", "Three", "Two"];
+let values = ["A", "K", "Q", "J", "10", "9",
+	"8", "7", "6", "5", "4", "3", "2"];
 
 // DOM Variables
 let textArea = document.getElementById("text-area");
 let newGameButton = document.getElementById("new-game-button");
 let hitButton = document.getElementById("hit-button");
 let stayButton = document.getElementById("stay-button");
+let dealerScoreBoard = document.getElementById("dealer-score-board");
+let playerScoreBoard = document.getElementById("player-score-board");
+let tableCards = document.getElementsByClassName("table-cards");
+let gameNotifications = document.getElementById("game-notifications")
+
+
+// Stack Overflow code to remove elements by class name
+// Used with New Game/Hit/Stay buttons to clean slate and only show current cards
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+}
 
 // Game Variables
 let gameStarted = false,
@@ -28,7 +46,15 @@ let gameStarted = false,
 
 hitButton.style.display = "none";
 stayButton.style.display = "none";
+
+// Hide the playing table
+for (var i=0; i<tableCards.length; i++) {
+	tableCards[i].className += " hidden";
+}
+
 showStatus();
+
+
 
 newGameButton.addEventListener("click", function() {
 	gameStarted = true;
@@ -36,6 +62,10 @@ newGameButton.addEventListener("click", function() {
 	playerWon = false;
 	dealerWon = false;
 	tieGame = false;
+
+	document.getElementsByClassName("cards").remove();
+	gameNotifications.style.display ="none";
+	document.getElementById("wrapper").style.background = "#15843f";
 
 	deck = createDeck();
 	shuffleDeck(deck);
@@ -45,10 +75,17 @@ newGameButton.addEventListener("click", function() {
 	newGameButton.style.display = "none";
 	hitButton.style.display = "inline";
 	stayButton.style.display = "inline";
+	// Show the playing table
+	for (var i=0; i<tableCards.length; i++) {
+	tableCards[i].className = "table-cards";
+}
 	showStatus();
 });
 
 hitButton.addEventListener("click", function() {
+
+	document.getElementsByClassName("cards").remove();
+
 	playerCards.push(getNextCard());
 
 	while (dealerScore < playerScore
@@ -63,6 +100,9 @@ hitButton.addEventListener("click", function() {
 });
 
 stayButton.addEventListener("click", function() {
+
+	document.getElementsByClassName("cards").remove();
+
 	gameOver = true;
 	checkForEndOfGame();
 	showStatus();
@@ -110,23 +150,23 @@ function getNextCard() {
 
 function getCardNumericValue(card) {
 	switch(card.value) {
-		case "Ace":
+		case "A":
 			return 1;
-		case "Two":
+		case "2":
 			return 2;
-		case "Three":
+		case "3":
 			return 3;
-		case "Four":
+		case "4":
 			return 4;
-		case "Five":
+		case "5":
 			return 5;
-		case "Six":
+		case "6":
 			return 6;
-		case "Seven":
+		case "7":
 			return 7;
-		case "Eight":
+		case "8":
 			return 8;
-		case "Nine":
+		case "9":
 			return 9
 		default:
 			return 10;
@@ -139,7 +179,7 @@ function getScore(cardArray) {
 	for (let i=0; i<cardArray.length; i++) {
 		let card = cardArray[i];
 		score += getCardNumericValue(card);
-		if (card.value === "Ace") {
+		if (card.value === "A") {
 			hasAce = true;
 		}
 	}
@@ -208,44 +248,187 @@ function checkForEndOfGame() {
 function showStatus() {
 	if (!gameStarted) {
 		textArea.innerText = "Welcome to Blackjack!";
+		document.getElementById("wrapper").style.background = "white";
 		return;
 	}
 
-	let dealerCardString = "";
-	for (let i=0; i<dealerCards.length; i++) {
-		dealerCardString += getCardString(dealerCards[i]) + "\n";
+// Creates Cards on table in individual divs
+// For Dealer and Player
+// Reversed order of Dealer and Player blocks because style.color was acting weird. Somehow fixed by reversing?
+for (let i=0; i<playerCards.length; i++) {
+	let cardDiv = "";
+	cardDiv = document.createElement("div");
+	cardDiv.id = "player-card" + [i];
+	cardDiv.className = "cards";
+	document.getElementById("player-cards").appendChild(cardDiv);
+}
+
+for (let i=0; i<playerCards.length; i++) {	
+	suitDiv = document.createElement("div");
+	suitDiv.id = "suit" + [i];
+	suitDiv.className = "suits";
+	document.getElementById("player-card" + [i]).appendChild(suitDiv);
+
+	if (playerCards[i].suit === "Clubs") {
+		suitDiv.innerText = playerCards[i].value;
+		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9827;" + "</i>";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9827;";
 	}
-
-	let playerCardString = "";
-	for (let i=0; i<playerCards.length; i++) {
-		playerCardString += getCardString(playerCards[i]) + "\n";
+	else if (playerCards[i].suit === "Spades") {
+		suitDiv.innerText = playerCards[i].value;
+		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9824;" + "</i>";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9824;";
 	}
+	else if (playerCards[i].suit === "Hearts") {
+		suitDiv.innerText = playerCards[i].value;
+		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9829;" + "</i>";
+		suitDiv.style.color = "red";
+		document.getElementById(suitDiv.id).parentElement.style.color = "red";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9829;";
+	}
+	else if (playerCards[i].suit === "Diamonds") {
+		suitDiv.innerText = playerCards[i].value;
+		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9830;" + "</i>";
+		suitDiv.style.color = "red";
+		document.getElementById(suitDiv.id).parentElement.style.color = "red";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9830;";
+	}			
+}
 
-	updateScores();
 
-	textArea.innerText =
-		"Dealer has:\n" +
-		dealerCardString +
-		"(score: " + dealerScore + ")\n\n" +
+for (let i=0; i<dealerCards.length; i++) {
+	let cardDiv = "";
+	cardDiv = document.createElement("div");
+	cardDiv.id = "dealer-card" + [i];
+	cardDiv.className = "cards";
+	document.getElementById("dealer-cards").appendChild(cardDiv);
+	// suitDiv.innerText = dealerCards[i].value;
+	// cardDiv.innerText = "\n" + dealerCards[i].value;
+}
+for (let i=0; i<dealerCards.length; i++) {	
+	suitDiv = document.createElement("div");
+	suitDiv.id = "suit" + [i];
+	suitDiv.className = "suits";
+	document.getElementById("dealer-card" + [i]).appendChild(suitDiv);
+
+	if (dealerCards[i].suit === "Clubs") {
+		suitDiv.innerText = dealerCards[i].value;
+		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9827;" + "</i>";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9827;";
+	}
+	else if (dealerCards[i].suit === "Spades") {
+		suitDiv.innerText = dealerCards[i].value;
+		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9824;" + "</i>";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9824;";
+	}
+	else if (dealerCards[i].suit === "Hearts") {
+		suitDiv.innerText = dealerCards[i].value;
+		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9829;" + "</i>";
+		suitDiv.style.color = "red";
+		document.getElementById(suitDiv.id).parentElement.style.color = "red";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9829;";
+	}
+	else if (dealerCards[i].suit === "Diamonds") {
+		suitDiv.innerText = dealerCards[i].value;
+		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9830;" + "</i>";
+		suitDiv.style.color = "red";
+		document.getElementById(suitDiv.id).parentElement.style.color = "red";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9830;";
+	}			
+}
+
+
+
+// for (let i=0; i<playerCards.length; i++) {
+// 	let cardDiv = "";
+// 	cardDiv = document.createElement("div");
+// 	cardDiv.id = "player-card" + [i];
+// 	cardDiv.className = "cards";
+// 	document.getElementById("player-cards").appendChild(cardDiv);
+// 	cardDiv.innerText = playerCards[i].value;
+// }
+// for (let i=0; i<playerCards.length; i++) {	
+// 	suitDiv = document.createElement("div");
+// 	suitDiv.id = "suit" + [i];
+// 	suitDiv.className = "suits";
+// 	document.getElementById("player-card" + [i]).appendChild(suitDiv);
+
+// 	if (playerCards[i].suit === "Clubs") {
+// 		suitDiv.innerHTML = "&#9827;";
+// 	}
+// 	else if (playerCards[i].suit === "Spades") {
+// 		suitDiv.innerHTML = "&#9824;";
+// 	}
+// 	else if (playerCards[i].suit === "Hearts") {
+// 		suitDiv.innerHTML = "&#9829;";
+// 		suitDiv.style.color = "red";
+// 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
+// 	}
+// 	else if (playerCards[i].suit === "Diamonds") {
+// 		suitDiv.innerHTML = "&#9830;";
+// 		suitDiv.style.color = "red";
+// 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
+// 	}			
+// }
+
+updateScores();
+
+dealerScoreBoard.innerText = "Score: " + dealerScore;
+playerScoreBoard.innerText = "Score: " + playerScore;
+
+
+
+
+
+
+
+
+	// let dealerCardString = "";
+	// for (let i=0; i<dealerCards.length; i++) {
+	// 	dealerCardString += getCardString(dealerCards[i]) + "\n";
+	// }
+
+	// let playerCardString = "";
+	// for (let i=0; i<playerCards.length; i++) {
+	// 	playerCardString += getCardString(playerCards[i]) + "\n";
+	// }
+
+	// updateScores();
+
+	// textArea.innerText =
+	// 	"Dealer has:\n" +
+	// 	dealerCardString +
+	// 	"(score: " + dealerScore + ")\n\n" +
   
-		"Player has:\n" +
-		playerCardString +
-		"(score: " + playerScore + ")\n\n";
+	// 	"Player has:\n" +
+	// 	playerCardString +
+	// 	"(score: " + playerScore + ")\n\n";
+
+	textArea.innerText = "";
 
 	if (gameOver) {
+		gameNotifications.style.display ="block";
+		gameNotifications.style.width ="100%";
 		if (playerWon) {
-			textArea.innerText += "YOU WIN!";
+			gameNotifications.innerText = "YOU WIN!";
 		}
 		else if (tieGame) {
-			textArea.innerText += "TIE!"
+			gameNotifications.innerText = "TIE!"
 		}
 		else if (dealerWon) {
-			textArea.innerText += "DEALER WINS";
+			gameNotifications.innerText = "DEALER WINS";
 		}
 		newGameButton.style.display = "inline";
 		hitButton.style.display = "none";
 		stayButton.style.display = "none";
 	}
+
+
+
+
+
+
+
 
 
 // // Loop through all cards to see if shuffled

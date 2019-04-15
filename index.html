@@ -4,16 +4,36 @@
 	<title>Blackjack</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body>
+<body class="no-select">
 
-<h1 id="title">Blackjack</h1>
-<h4>by Erich Kopp</h4>
-<br>
+<div id="wrapper" class="wrapper">
 
-<p id="text-area">Welcome to Blackjack!</p>
-<button id="new-game-button">New Game!</button>
-<button id="hit-button">Hit!</button>
-<button id="stay-button">Stay</button>
+	<h1 id="title">Blackjack</h1>
+	<h4>by Erich Kopp</h4>
+	<br>
+
+	<h1 id="text-area"></h1>
+
+	<p id="game-notifications"></p>
+
+	<div id="dealer-cards" class="table-cards">
+		
+	</div>
+	<p id="dealer-score-board" class="score-boards"></p>
+
+	<br>
+
+	<div id="player-cards" class="table-cards">
+		
+	</div>
+	<p id="player-score-board" class="score-boards"></p>
+
+	<!-- <p id="text-area">Welcome to Blackjack!</p> -->
+
+	<button id="new-game-button">New Game!</button>
+	<button id="hit-button">Hit!</button>
+	<button id="stay-button">Stay</button>
+</div>
 
 <script type="text/javascript" src="scripts.js"></script>
 </body>

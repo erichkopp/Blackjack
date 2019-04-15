@@ -1,0 +1,100 @@
+body {
+	text-align: center;
+}
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+
+/*body * {
+	display: inline-block;
+}
+*/
+.wrapper {
+	margin: 0 20%;
+	width: auto;
+	height: auto;
+	position: relative;
+	/*background-color: green;*/
+}
+
+#game-notifications {
+	/*opacity: 0.5;*/
+	background: rgba(255, 255, 255, 0.8);
+	font-weight: bolder;
+	font-size: 3em;
+	/*background-color: white;*/
+	position: absolute;
+	top: 25%;
+	z-index: 10;
+}
+
+
+#dealer-cards {
+	position: relative;
+	background-color: #15843f;
+	height: 100px;
+	width: 100%;
+}
+
+/*#dealer-cards {
+	height: 100%;
+	width: auto;
+}*/
+
+#player-cards {
+	position: relative;
+	background-color: #15843f;
+	height: 100px;
+	width: 100%;
+}
+
+/*#player-cards {
+	height: 100%;
+	width: auto;
+}*/
+
+.cards {
+	position: relative;
+	display: inline-block;
+	background-color: white;
+	margin-left: 5px;
+	margin-right: 5px;
+	height: 100px;
+	width: 75px;
+	border-radius: 7px;
+	font-size: 6em;
+	/*border: black solid 1px;*/
+}
+
+.suits {
+	position: absolute;
+	left: 2px;
+	top: 0;
+	font-size: 20px;
+	/*text-align: justify;*/
+	/*letter-spacing: 2em;*/
+	/*width: 100%;*/
+}
+
+.suit-upper-left {
+	position: absolute;
+	top: 15px;
+	left: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+.score-boards {
+/*	margin-top: -20px;
+	z-index: 11;*/
+}
