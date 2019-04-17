@@ -263,7 +263,7 @@ for (let i=0; i<playerCards.length; i++) {
 	document.getElementById("player-cards").appendChild(cardDiv);
 }
 
-for (let i=0; i<playerCards.length; i++) {	
+for (let i=0; i<playerCards.length; i++) {
 	suitDiv = document.createElement("div");
 	suitDiv.id = "suit" + [i];
 	suitDiv.className = "suits";
@@ -273,11 +273,13 @@ for (let i=0; i<playerCards.length; i++) {
 		suitDiv.innerText = playerCards[i].value;
 		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9827;" + "</i>";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9827;";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9827;" + "</div>"; // Contrasting Right Side
 	}
 	else if (playerCards[i].suit === "Spades") {
 		suitDiv.innerText = playerCards[i].value;
 		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9824;" + "</i>";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9824;";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9824;" + "</div>"; // Contrasting Right Side
 	}
 	else if (playerCards[i].suit === "Hearts") {
 		suitDiv.innerText = playerCards[i].value;
@@ -285,6 +287,7 @@ for (let i=0; i<playerCards.length; i++) {
 		suitDiv.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9829;";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9829;" + "</div>"; // Contrasting Right Side
 	}
 	else if (playerCards[i].suit === "Diamonds") {
 		suitDiv.innerText = playerCards[i].value;
@@ -292,6 +295,7 @@ for (let i=0; i<playerCards.length; i++) {
 		suitDiv.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9830;";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9830;" + "</div>"; // Contrasting Right Side
 	}			
 }
 
@@ -315,11 +319,13 @@ for (let i=0; i<dealerCards.length; i++) {
 		suitDiv.innerText = dealerCards[i].value;
 		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9827;" + "</i>";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9827;";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9827;" + "</div>"; // Contrasting Right Side
 	}
 	else if (dealerCards[i].suit === "Spades") {
 		suitDiv.innerText = dealerCards[i].value;
 		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9824;" + "</i>";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9824;";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9824;" + "</div>"; // Contrasting Right Side
 	}
 	else if (dealerCards[i].suit === "Hearts") {
 		suitDiv.innerText = dealerCards[i].value;
@@ -327,6 +333,7 @@ for (let i=0; i<dealerCards.length; i++) {
 		suitDiv.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9829;";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9829;" + "</div>"; // Contrasting Right Side
 	}
 	else if (dealerCards[i].suit === "Diamonds") {
 		suitDiv.innerText = dealerCards[i].value;
@@ -334,6 +341,7 @@ for (let i=0; i<dealerCards.length; i++) {
 		suitDiv.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9830;";
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9830;" + "</div>"; // Contrasting Right Side
 	}			
 }
 

@@ -1,4 +1,6 @@
 body {
+	/*font-family: 'Press Start 2P', cursive;*/
+	font-family: 'Fira Mono', monospace;
 	text-align: center;
 }
 
@@ -97,4 +99,16 @@ body {
 .score-boards {
 /*	margin-top: -20px;
 	z-index: 11;*/
+}
+
+.contrast-card {
+	position: absolute;
+	height: 100px;
+	width: 75px;
+	left: 0px;
+	opacity: .3;
+	color: white;
+	top: 0;
+	clip: rect(0px,75px,100px,37px);
+	z-index: 9;
 }
