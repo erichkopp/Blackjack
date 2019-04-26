@@ -38,6 +38,7 @@ let gameStarted = false,
 		playerWon = false,
 		dealerWon = false,
 		tieGame = false,
+		gameButtonsClicked = false,
 		dealerCards = [],
 		playerCards = [],
 		dealerScore = [],
@@ -62,15 +63,24 @@ newGameButton.addEventListener("click", function() {
 	playerWon = false;
 	dealerWon = false;
 	tieGame = false;
+	gameButtonsClicked = false;
 
+	document.getElementById("by_erich").style.display = "none";
 	document.getElementsByClassName("cards").remove();
 	gameNotifications.style.display ="none";
 	document.getElementById("wrapper").style.background = "#15843f";
+	
+	showFaceDownCard();
 
 	deck = createDeck();
 	shuffleDeck(deck);
 	dealerCards = [ getNextCard(), getNextCard() ];
 	playerCards = [ getNextCard(), getNextCard() ];
+
+	// Show Dealer's second card facedown
+	let faceDownCard = document.createElement("div");
+	faceDownCard.id = "face-down-card";
+	document.getElementById("dealer-cards").appendChild(faceDownCard);
 
 	newGameButton.style.display = "none";
 	hitButton.style.display = "inline";
@@ -83,12 +93,13 @@ newGameButton.addEventListener("click", function() {
 });
 
 hitButton.addEventListener("click", function() {
-
+	gameButtonsClicked = true;
 	document.getElementsByClassName("cards").remove();
+	showFaceDownCard();
 
 	playerCards.push(getNextCard());
 
-	while (dealerScore < playerScore
+	if (dealerScore < playerScore
 			&& playerScore <= 21
 			&& dealerScore < 21) {
 	dealerCards.push(getNextCard());
@@ -100,8 +111,9 @@ hitButton.addEventListener("click", function() {
 });
 
 stayButton.addEventListener("click", function() {
-
+	gameButtonsClicked = true;
 	document.getElementsByClassName("cards").remove();
+	showFaceDownCard();
 
 	gameOver = true;
 	checkForEndOfGame();
@@ -135,6 +147,13 @@ function shuffleDeck(deck) {
 		let tmp = deck[swapIdx]; //tmp = deck[25]
 		deck[swapIdx] = deck[i]; //deck[25] = deck[0]
 		deck[i] = tmp; //deck[0] = deck[25]
+	}
+}
+
+// Shows dealer's second card
+function showFaceDownCard() {
+	if ( document.getElementById("face-down-card") ) {
+		document.getElementById("face-down-card").remove();
 	}
 }
 
@@ -197,14 +216,17 @@ function updateScores() {
 		if (playerScore === dealerScore) {
 			tieGame = true;
 			gameOver = true;
+			showFaceDownCard();
 		}
 		else if (playerScore > dealerScore && playerScore <= 21) {
 			playerWon = true;
 			gameOver = true;
+			showFaceDownCard();
 		}
-		else if (dealerScore > playerScore && dealerScore <= 21) {
+		else if (dealerScore > playerScore && dealerScore <= 21 && gameButtonsClicked) {
 			dealerWon = true;
 			gameOver = true;
+			showFaceDownCard();
 		}
 	}
 }
@@ -299,16 +321,14 @@ for (let i=0; i<playerCards.length; i++) {
 	}			
 }
 
-
 for (let i=0; i<dealerCards.length; i++) {
 	let cardDiv = "";
 	cardDiv = document.createElement("div");
 	cardDiv.id = "dealer-card" + [i];
 	cardDiv.className = "cards";
 	document.getElementById("dealer-cards").appendChild(cardDiv);
-	// suitDiv.innerText = dealerCards[i].value;
-	// cardDiv.innerText = "\n" + dealerCards[i].value;
 }
+
 for (let i=0; i<dealerCards.length; i++) {	
 	suitDiv = document.createElement("div");
 	suitDiv.id = "suit" + [i];
@@ -347,70 +367,36 @@ for (let i=0; i<dealerCards.length; i++) {
 
 
 
-// for (let i=0; i<playerCards.length; i++) {
-// 	let cardDiv = "";
-// 	cardDiv = document.createElement("div");
-// 	cardDiv.id = "player-card" + [i];
-// 	cardDiv.className = "cards";
-// 	document.getElementById("player-cards").appendChild(cardDiv);
-// 	cardDiv.innerText = playerCards[i].value;
-// }
-// for (let i=0; i<playerCards.length; i++) {	
-// 	suitDiv = document.createElement("div");
-// 	suitDiv.id = "suit" + [i];
-// 	suitDiv.className = "suits";
-// 	document.getElementById("player-card" + [i]).appendChild(suitDiv);
-
-// 	if (playerCards[i].suit === "Clubs") {
-// 		suitDiv.innerHTML = "&#9827;";
-// 	}
-// 	else if (playerCards[i].suit === "Spades") {
-// 		suitDiv.innerHTML = "&#9824;";
-// 	}
-// 	else if (playerCards[i].suit === "Hearts") {
-// 		suitDiv.innerHTML = "&#9829;";
-// 		suitDiv.style.color = "red";
-// 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
-// 	}
-// 	else if (playerCards[i].suit === "Diamonds") {
-// 		suitDiv.innerHTML = "&#9830;";
-// 		suitDiv.style.color = "red";
-// 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
-// 	}			
-// }
-
 updateScores();
 
-dealerScoreBoard.innerText = "Score: " + dealerScore;
+
+
+// Show scores. Only show score of dealer's first card on first turn
+// Once Hit or Stay button clicked show Dealer's full/true score to Player
+
+function tempScore () {
+	if (dealerCards[0].value === "A") {
+		return 11
+	}
+	else {
+		return getCardNumericValue(dealerCards[0]);
+	}
+}
+
+if (gameButtonsClicked) {
+	dealerScoreBoard.innerText = "Score: " + dealerScore;
+}
+else {
+	dealerScoreBoard.innerText = "Score: " + tempScore();
+	// dealerScoreBoard.innerText = "Score: " + getCardNumericValue(dealerCards[0]);
+}
+
 playerScoreBoard.innerText = "Score: " + playerScore;
 
 
 
 
 
-
-
-
-	// let dealerCardString = "";
-	// for (let i=0; i<dealerCards.length; i++) {
-	// 	dealerCardString += getCardString(dealerCards[i]) + "\n";
-	// }
-
-	// let playerCardString = "";
-	// for (let i=0; i<playerCards.length; i++) {
-	// 	playerCardString += getCardString(playerCards[i]) + "\n";
-	// }
-
-	// updateScores();
-
-	// textArea.innerText =
-	// 	"Dealer has:\n" +
-	// 	dealerCardString +
-	// 	"(score: " + dealerScore + ")\n\n" +
-  
-	// 	"Player has:\n" +
-	// 	playerCardString +
-	// 	"(score: " + playerScore + ")\n\n";
 
 	textArea.innerText = "";
 
@@ -438,11 +424,6 @@ playerScoreBoard.innerText = "Score: " + playerScore;
 
 
 
-
-// // Loop through all cards to see if shuffled
-	// for (var i=0; i<deck.length; i++) {
-	// 	textArea.innerText += '\n' + getCardString(deck[i]);
-	// }
 }
 
 
@@ -450,17 +431,3 @@ playerScoreBoard.innerText = "Score: " + playerScore;
 
 
 
-// console.log("Welcome to Blackjack!");
-
-// console.log("You are dealt: ");
-// console.log(" " + getCardString(playerCards[0]) );
-// console.log(" " + getCardString(playerCards[1]) );
-
-
-
-// // Using for-loop to list all cards for hand of any amount of cards
-// console.log("Welcome to Blackjack!");
-// console.log("You are dealt: ")
-// for (let i=0; i<playerCards.length; i++) {
-// 	console.log(" " + playerCards[i]);
-// }
