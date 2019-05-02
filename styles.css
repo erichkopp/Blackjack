@@ -34,7 +34,7 @@ body {
 	font-size: 3em;
 	/*background-color: white;*/
 	position: absolute;
-	top: 25%;
+	top: 40%;
 	z-index: 50;
 }
 
@@ -116,12 +116,32 @@ body {
 
 #face-down-card {
 	position: absolute;
-	background-color: blue;
+	background-color: #390754;
 	display: inline-block;
 	margin-left: 90px;
 	height: 100px;
 	width: 75px;
 	border-radius: 7px;
 	z-index: 20;
+}
+
+#face-down-card {
+/*	background:
+radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent),
+radial-gradient(circle, transparent 20%, #390754 20%, #390754 80%, transparent 80%, transparent) 50px 50px,
+linear-gradient(#390754 8px, transparent 8px) 0 -4px,
+linear-gradient(90deg, #A8B1BB 8px, transparent 8px) -4px 0;
+background-color: slategray;
+background-size:0px 0px, 3px 5px, 2px 2px, 2px 2px;*/
+
+
+  /*background-image: repeating-linear-gradient(-45deg, rgba(255,255,255, 0.25), rgba(255,255,255, 0.25) 1px, transparent 1px, transparent 6px);*/
+  /*background-size: 25px 25px;*/
+  
+
+
+/*
+  background-image: repeating-linear-gradient(-45deg, rgba(255,255,255, 0.25), rgba(255,255,255, 0.25) 1px, transparent 1px, transparent 6px);
+  background-size: 150px 150px;*/
 
 }

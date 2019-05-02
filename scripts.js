@@ -88,7 +88,7 @@ newGameButton.addEventListener("click", function() {
 	// Show the playing table
 	for (var i=0; i<tableCards.length; i++) {
 	tableCards[i].className = "table-cards";
-}
+	}
 	showStatus();
 });
 
@@ -99,13 +99,16 @@ hitButton.addEventListener("click", function() {
 
 	playerCards.push(getNextCard());
 
-	if (dealerScore < playerScore
-			&& playerScore <= 21
-			&& dealerScore < 21) {
-	dealerCards.push(getNextCard());
-	updateScores();
-}
 
+	// if (dealerScore < playerScore
+	// 	&& playerScore <= 21
+	// 	&& dealerScore < 21) {
+	// 	dealerCards.push(getNextCard());
+	// 	updateScores();
+	// }
+	if (dealerScore < 17 && playerScore <= 21) {
+		dealerCards.push(getNextCard());
+	}
 	checkForEndOfGame();
 	showStatus();
 });
@@ -236,13 +239,18 @@ function checkForEndOfGame() {
 	updateScores();
 
 	if (gameOver) {
-		// Let dealer take cards
-		while (dealerScore < playerScore
-					&& playerScore <= 21
-					&& dealerScore <= 21) {
+		// // Let dealer take cards
+		// while (dealerScore < playerScore
+		// 			&& playerScore <= 21
+		// 			&& dealerScore <= 21) {
+		// 	dealerCards.push(getNextCard());
+		// 	updateScores();
+		// }
+		while (dealerScore < 17 && playerScore <= 21) {
 			dealerCards.push(getNextCard());
 			updateScores();
 		}
+
 	}
 	if (playerScore > 21) {
 		dealerWon = true;
@@ -266,6 +274,14 @@ function checkForEndOfGame() {
 		}
 	}
 }
+
+// function dealersPlay () {
+// 		updateScores();
+// 	if (dealerScore <= 16 && playerScore <= 21) {
+// 		dealerCards.push(getNextCard());
+// 		updateScores();
+// 	}
+// }
 
 function showStatus() {
 	if (!gameStarted) {
@@ -295,13 +311,13 @@ for (let i=0; i<playerCards.length; i++) {
 		suitDiv.innerText = playerCards[i].value;
 		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9827;" + "</i>";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9827;";
-		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9827;" + "</div>"; // Contrasting Right Side
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9827;" + "</div>"; // Contrasting Left Side
 	}
 	else if (playerCards[i].suit === "Spades") {
 		suitDiv.innerText = playerCards[i].value;
 		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9824;" + "</i>";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9824;";
-		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9824;" + "</div>"; // Contrasting Right Side
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9824;" + "</div>"; // Contrasting Left Side
 	}
 	else if (playerCards[i].suit === "Hearts") {
 		suitDiv.innerText = playerCards[i].value;
@@ -309,7 +325,7 @@ for (let i=0; i<playerCards.length; i++) {
 		suitDiv.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9829;";
-		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9829;" + "</div>"; // Contrasting Right Side
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9829;" + "</div>"; // Contrasting Left Side
 	}
 	else if (playerCards[i].suit === "Diamonds") {
 		suitDiv.innerText = playerCards[i].value;
@@ -317,7 +333,7 @@ for (let i=0; i<playerCards.length; i++) {
 		suitDiv.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9830;";
-		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9830;" + "</div>"; // Contrasting Right Side
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9830;" + "</div>"; // Contrasting Left Side
 	}			
 }
 
@@ -339,13 +355,13 @@ for (let i=0; i<dealerCards.length; i++) {
 		suitDiv.innerText = dealerCards[i].value;
 		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9827;" + "</i>";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9827;";
-		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9827;" + "</div>"; // Contrasting Right Side
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9827;" + "</div>"; // Contrasting Left Side
 	}
 	else if (dealerCards[i].suit === "Spades") {
 		suitDiv.innerText = dealerCards[i].value;
 		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9824;" + "</i>";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9824;";
-		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9824;" + "</div>"; // Contrasting Right Side
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9824;" + "</div>"; // Contrasting Left Side
 	}
 	else if (dealerCards[i].suit === "Hearts") {
 		suitDiv.innerText = dealerCards[i].value;
@@ -353,7 +369,7 @@ for (let i=0; i<dealerCards.length; i++) {
 		suitDiv.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9829;";
-		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9829;" + "</div>"; // Contrasting Right Side
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9829;" + "</div>"; // Contrasting Left Side
 	}
 	else if (dealerCards[i].suit === "Diamonds") {
 		suitDiv.innerText = dealerCards[i].value;
@@ -361,7 +377,7 @@ for (let i=0; i<dealerCards.length; i++) {
 		suitDiv.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9830;";
-		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9830;" + "</div>"; // Contrasting Right Side
+		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9830;" + "</div>"; // Contrasting Left Side
 	}			
 }
 
@@ -382,6 +398,7 @@ function tempScore () {
 		return getCardNumericValue(dealerCards[0]);
 	}
 }
+
 
 if (gameButtonsClicked) {
 	dealerScoreBoard.innerText = "Score: " + dealerScore;
@@ -406,12 +423,16 @@ playerScoreBoard.innerText = "Score: " + playerScore;
 		if (playerWon) {
 			gameNotifications.innerText = "YOU WIN!";
 		}
+		else if (dealerScore > 21 && playerScore > 21) {
+			gameNotifications.innerText = "BUST!"
+		}
 		else if (tieGame) {
 			gameNotifications.innerText = "TIE!"
 		}
 		else if (dealerWon) {
 			gameNotifications.innerText = "DEALER WINS";
 		}
+
 		newGameButton.style.display = "inline";
 		hitButton.style.display = "none";
 		stayButton.style.display = "none";
@@ -426,6 +447,27 @@ playerScoreBoard.innerText = "Score: " + playerScore;
 
 }
 
+
+
+
+
+
+
+
+// function dealersPlay () {
+
+// 	if (dealerScore <= 17) {
+// 		// Dealer Stays
+// 	}
+// 	else if (dealerScore <= 16) {
+// 		// Dealer takes a card
+// 	}
+// 	else if (dealerHasAce) {
+// 		// if counting ace as 11 brings total >= 17 && <= 21
+// 		// dealer stays
+// 	}
+
+// }
 
 
 
