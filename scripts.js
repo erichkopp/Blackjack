@@ -3,6 +3,7 @@
 // by Erich Kopp
 // 
 
+
 // Card Variables
 let suits = ["Hearts", "Clubs", "Diamonds", "Spades"]
 let values = ["A", "K", "Q", "J", "10", "9",
@@ -18,6 +19,7 @@ let tableCards = document.getElementsByClassName("table-cards");
 let gameNotifications = document.getElementById("game-notifications")
 
 
+
 // Stack Overflow code to remove elements by class name
 // Used with New Game/Hit/Stay buttons to clean slate and only show current cards
 Element.prototype.remove = function() {
@@ -30,6 +32,7 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
         }
     }
 }
+
 
 // Game Variables
 let gameStarted = false,
@@ -239,13 +242,7 @@ function checkForEndOfGame() {
 	updateScores();
 
 	if (gameOver) {
-		// // Let dealer take cards
-		// while (dealerScore < playerScore
-		// 			&& playerScore <= 21
-		// 			&& dealerScore <= 21) {
-		// 	dealerCards.push(getNextCard());
-		// 	updateScores();
-		// }
+		// Let dealer take cards
 		while (dealerScore < 17 && playerScore <= 21) {
 			dealerCards.push(getNextCard());
 			updateScores();
@@ -275,13 +272,6 @@ function checkForEndOfGame() {
 	}
 }
 
-// function dealersPlay () {
-// 		updateScores();
-// 	if (dealerScore <= 16 && playerScore <= 21) {
-// 		dealerCards.push(getNextCard());
-// 		updateScores();
-// 	}
-// }
 
 function showStatus() {
 	if (!gameStarted) {
@@ -445,28 +435,6 @@ playerScoreBoard.innerText = "Score: " + playerScore;
 
 
 }
-
-
-
-
-
-
-
-
-// function dealersPlay () {
-
-// 	if (dealerScore <= 17) {
-// 		// Dealer Stays
-// 	}
-// 	else if (dealerScore <= 16) {
-// 		// Dealer takes a card
-// 	}
-// 	else if (dealerHasAce) {
-// 		// if counting ace as 11 brings total >= 17 && <= 21
-// 		// dealer stays
-// 	}
-
-// }
 
 
 

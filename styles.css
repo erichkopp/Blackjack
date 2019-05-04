@@ -23,17 +23,12 @@ body {
 	font-size: 3em;
 }
 
-/*body * {
-	display: inline-block;
-}
-*/
 .wrapper {
 	margin: 0 20%;
 	padding-bottom: 3%;
 	width: auto;
 	height: auto;
 	position: relative;
-	/*background-color: green;*/
 }
 
 #title {
@@ -44,11 +39,9 @@ body {
 }
 
 #game-notifications {
-	/*opacity: 0.5;*/
 	background: rgba(255, 255, 255, 0.8);
 	font-weight: bolder;
 	font-size: 3em;
-	/*background-color: white;*/
 	position: absolute;
 	top: 35%;
 	z-index: 50;
@@ -63,22 +56,12 @@ body {
 	margin-top: -50px;
 }
 
-/*#dealer-cards {
-	height: 100%;
-	width: auto;
-}*/
-
 #player-cards {
 	position: relative;
 	background-color: #15843f;
 	height: 100px;
 	width: 100%;
 }
-
-/*#player-cards {
-	height: 100%;
-	width: auto;
-}*/
 
 .cards {
 	position: relative;
@@ -90,7 +73,6 @@ body {
 	width: 75px;
 	border-radius: 7px;
 	font-size: 6em;
-	/*border: black solid 1px;*/
 }
 
 .suits {
@@ -98,9 +80,6 @@ body {
 	left: 2px;
 	top: 0;
 	font-size: 20px;
-	/*text-align: justify;*/
-	/*letter-spacing: 2em;*/
-	/*width: 100%;*/
 }
 
 .suit-upper-left {
@@ -143,8 +122,11 @@ body {
 	z-index: 20;
 }
 
+.arrows {
+	font-size: 2em;
+}
+
 .game-buttons {
-	/*color: white;*/
 	font-size: 2em;
 	font-weight: bolder;
 	padding: 10px;
@@ -167,9 +149,9 @@ linear-gradient(90deg, #A8B1BB 8px, transparent 8px) -4px 0;
 background-color: slategray;
 background-size:0px 0px, 3px 5px, 2px 2px, 2px 2px;*/
 
-
-  /*background-image: repeating-linear-gradient(-45deg, rgba(255,255,255, 0.25), rgba(255,255,255, 0.25) 1px, transparent 1px, transparent 6px);*/
-  /*background-size: 25px 25px;*/
+/*
+  background-image: repeating-linear-gradient(-45deg, rgba(255,255,255, 0.25), rgba(255,255,255, 0.25) 1px, transparent 1px, transparent 6px);
+  background-size: 25px 25px;*/
   
 
 
