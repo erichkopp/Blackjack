@@ -9,7 +9,6 @@ let values = ["A", "K", "Q", "J", "10", "9",
 	"8", "7", "6", "5", "4", "3", "2"];
 
 // DOM Variables
-let textArea = document.getElementById("text-area");
 let newGameButton = document.getElementById("new-game-button");
 let hitButton = document.getElementById("hit-button");
 let stayButton = document.getElementById("stay-button");
@@ -65,6 +64,7 @@ newGameButton.addEventListener("click", function() {
 	tieGame = false;
 	gameButtonsClicked = false;
 
+	document.getElementById("title").style.color = "white";
 	document.getElementById("by_erich").style.display = "none";
 	document.getElementsByClassName("cards").remove();
 	gameNotifications.style.display ="none";
@@ -285,7 +285,6 @@ function checkForEndOfGame() {
 
 function showStatus() {
 	if (!gameStarted) {
-		textArea.innerText = "Welcome to Blackjack!";
 		document.getElementById("wrapper").style.background = "white";
 		return;
 	}
@@ -415,7 +414,7 @@ playerScoreBoard.innerText = "Score: " + playerScore;
 
 
 
-	textArea.innerText = "";
+
 
 	if (gameOver) {
 		gameNotifications.style.display ="block";

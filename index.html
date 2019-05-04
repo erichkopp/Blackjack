@@ -3,6 +3,8 @@
 <head>
 	<title>Blackjack</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<!-- Custom CSS Stylesheet for @font-face -->
+	<link rel="stylesheet" href="font_stylesheet.css" type="text/css" charset="utf-8" />
 	<!-- <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"> -->
 	<link href="https://fonts.googleapis.com/css?family=Fira+Mono:500" rel="stylesheet">
 </head>
@@ -14,7 +16,7 @@
 	<h4 id="by_erich">by Erich Kopp</h4>
 	<br>
 
-	<h1 id="text-area"></h1>
+
 
 	<p id="game-notifications"></p>
 
@@ -30,11 +32,13 @@
 	</div>
 	<p id="player-score-board" class="score-boards"></p>
 
-	<!-- <p id="text-area">Welcome to Blackjack!</p> -->
-
-	<button id="new-game-button">New Game!</button>
+<!-- 	<button id="new-game-button">New Game!</button>
 	<button id="hit-button">Hit!</button>
-	<button id="stay-button">Stay</button>
+	<button id="stay-button">Stay</button> -->
+
+	<a id="new-game-button" class="game-buttons">New Game</a>
+	<a id="hit-button" class="game-buttons">Hit</a>
+	<a id="stay-button" class="game-buttons">Stay</a>
 </div>
 
 <script type="text/javascript" src="scripts.js"></script>
