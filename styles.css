@@ -176,4 +176,9 @@ background-size:0px 0px, 3px 5px, 2px 2px, 2px 2px;*/
 		top: 30%;
 	}
 
+	.game-buttons:hover {
+	cursor: pointer;
+	color: black;
+	}
+
 }
