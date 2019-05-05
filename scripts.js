@@ -298,19 +298,19 @@ for (let i=0; i<playerCards.length; i++) {
 
 	if (playerCards[i].suit === "Clubs") {
 		suitDiv.innerText = playerCards[i].value;
-		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9827;" + "</i>";
+		suitDiv.innerHTML += "<span class='suit-upper-left'>" + "&#9827;" + "</span>";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9827;";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9827;" + "</div>"; // Contrasting Left Side
 	}
 	else if (playerCards[i].suit === "Spades") {
 		suitDiv.innerText = playerCards[i].value;
-		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9824;" + "</i>";
+		suitDiv.innerHTML += "<span class='suit-upper-left'>" + "&#9824;" + "</span>";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9824;";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "<div class='contrast-card'>" + "&#9824;" + "</div>"; // Contrasting Left Side
 	}
 	else if (playerCards[i].suit === "Hearts") {
 		suitDiv.innerText = playerCards[i].value;
-		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9829;" + "</i>";
+		suitDiv.innerHTML += "<span class='suit-upper-left'>" + "&#9829;" + "</span>";
 		suitDiv.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9829;";
@@ -318,7 +318,7 @@ for (let i=0; i<playerCards.length; i++) {
 	}
 	else if (playerCards[i].suit === "Diamonds") {
 		suitDiv.innerText = playerCards[i].value;
-		suitDiv.innerHTML += "<i class='suit-upper-left'>" + "&#9830;" + "</i>";
+		suitDiv.innerHTML += "<span class='suit-upper-left'>" + "&#9830;" + "</span>";
 		suitDiv.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.style.color = "red";
 		document.getElementById(suitDiv.id).parentElement.innerHTML += "&#9830;";

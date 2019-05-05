@@ -160,3 +160,20 @@ background-size:0px 0px, 3px 5px, 2px 2px, 2px 2px;*/
   background-size: 150px 150px;*/
 
 }
+
+
+@media only screen and (max-width: 600px) {
+	html, body {
+		height: 100%;
+	}
+
+	.wrapper {
+	margin: 0;
+	height: 100%;
+	}
+
+	#game-notifications {
+		top: 30%;
+	}
+
+}
