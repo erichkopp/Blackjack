@@ -72,7 +72,7 @@ body {
 	height: 100px;
 	width: 75px;
 	border-radius: 7px;
-	font-size: 6em;
+	font-size: 100px;
 }
 
 .suits {
@@ -84,7 +84,7 @@ body {
 
 .suit-upper-left {
 	position: absolute;
-	top: 15px;
+	top: 22px;
 	left: 0;
 }
 
@@ -96,19 +96,6 @@ body {
 	font-size: 2em;
 	margin-top: 10px;
 	color: white;
-}
-
-.contrast-card {
-	position: absolute;
-	height: 100px;
-	width: 75px;
-	left: 0px;
-	opacity: .3;
-	color: white;
-	top: 0;
-	/*clip: rect(0px,75px,100px,37px);*/
-	clip: rect(0px,37.5px,100px,0px);
-	z-index: 9;
 }
 
 #face-down-card {
