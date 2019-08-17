@@ -14,7 +14,15 @@ body {
                                   supported by Chrome and Opera */
 }
 
-#title, #text-area, .score-boards, .game-buttons {
+@font-face {
+    font-family: 'cute_tattooregular';
+    src: url('assets/fonts/cutetat-webfont.woff2') format('woff2'),
+         url('assets/fonts/cutetat-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#title, #text-area, .score-boards, .game-buttons, #new-game-button {
 	font-family: 'cute_tattooregular';
 }
 
@@ -34,6 +42,7 @@ body {
 	font-size: 5em;
 	font-weight: normal;
 	padding-top: 10px;
+	padding-bottom: 20px;
 	margin-top: 0px;
 }
 
@@ -112,7 +121,7 @@ body {
 	font-size: 2em;
 }
 
-.game-buttons {
+.game-buttons, #new-game-button {
 	font-size: 2em;
 	font-weight: bolder;
 	padding: 10px;
@@ -120,7 +129,18 @@ body {
 
 .game-buttons:hover {
 	cursor: pointer;
-	color: #390754;
+	color: #FFFFFF;
+	transition: .2s;
+}
+
+#new-game-button:hover {
+	cursor: pointer;
+	font-size: 3em;
+}
+
+#new-game-button:hover {
+	transition: .2s;
+	font-size: 3em;
 }
 
 @media only screen and (max-width: 600px) {
@@ -137,7 +157,7 @@ body {
 		top: 30%;
 	}
 
-	.game-buttons:hover {
+	.game-buttons:hover, #new-game-button {
 	cursor: pointer;
 	color: black;
 	}

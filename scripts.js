@@ -72,6 +72,7 @@ newGameButton.addEventListener("click", function() {
 	document.getElementsByClassName("cards").remove();
 	gameNotifications.style.display ="none";
 	document.getElementById("wrapper").style.background = "#15843f";
+	document.getElementsByTagName("body")[0].style.background = "#15843f";
 	
 	showFaceDownCard();
 
@@ -88,6 +89,7 @@ newGameButton.addEventListener("click", function() {
 	newGameButton.style.display = "none";
 	hitButton.style.display = "inline";
 	stayButton.style.display = "inline";
+	
 	// Show the playing table
 	for (var i=0; i<tableCards.length; i++) {
 	tableCards[i].className = "table-cards";
