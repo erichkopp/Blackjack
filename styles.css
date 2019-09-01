@@ -47,11 +47,12 @@ body {
 }
 
 #game-notifications {
+	position: fixed;
+	left: 0;
 	background: rgba(255, 255, 255, 0.8);
 	font-weight: bolder;
 	font-size: 3em;
-	position: absolute;
-	top: 35%;
+	top: 33%;
 	z-index: 50;
 }
 
